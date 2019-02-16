@@ -2,4 +2,8 @@ name: Resume
 description: 'Plantilla para hacer un cv'
 author: 'Luis Mayta'
 homepage: sahost.com.pe
-code: ''
+code: 'lfmc-resume'
+require:
+    - RainLab.User
+    - RainLab.Blog
+    - RainLab.Pages
