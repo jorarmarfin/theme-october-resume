@@ -51,15 +51,18 @@ snippetProperties[cv][title] = "Curriculum"
 snippetProperties[cv][type] = "string"
 snippetProperties[cv][default] = "#"
 snippetProperties[cv][options][] = ""
-snippetProperties[nacimiento][title] = "Nacimiento"
+snippetProperties[nacimiento][title] = "Fecha Nacimiento"
 snippetProperties[nacimiento][type] = "string"
-snippetProperties[nacimiento][default] = 1990
+snippetProperties[nacimiento][default] = "21-05-1980"
 snippetProperties[nacimiento][options][] = ""
 ==
 <?php
+use Carbon\Carbon;
+
 function onStart()
 {
-    dd($this->snippetProperties);
+    $this['edad'] = Carbon::parse($this->nacimiento)->age;
+
 }
 ?>
 ==
