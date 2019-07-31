@@ -1,0 +1,26 @@
+description = "Redes Sociales"
+
+[viewBag]
+
+[builderDetails]
+modelClass = "LuisMayta\Resume\Models\DatosPersonales"
+identifierValue = 1
+modelKeyColumn = "id"
+displayColumn = "nombre_corto"
+notFoundMessage = "Record not found"
+==
+{% set record = builderDetails.record %}
+    <ul class="social-icons custom-social-icons">
+        {% for item in record.redes_sociales %}
+            <li class="{{item.tipo}}">
+                <a href="{{ item.link}}" target="_blank" title="Facebook">
+                    
+                    {% if item.tipo=='social-icons-facebook' %}
+                        <i class="fab fa-facebook-f"></i>
+                    {% elseif item.tipo=='social-icons-twitter' %}
+                        <i class="fab fa-twitter"></i>
+                    {% endif %}
+                </a>
+            </li>
+        {% endfor %}
+    </ul>

@@ -3,80 +3,45 @@ description = "Sobre mi"
 [viewBag]
 snippetCode = "misdatos"
 snippetName = "Mis datos"
-snippetProperties[nombre][title] = "Nombre"
-snippetProperties[nombre][type] = "string"
-snippetProperties[nombre][default] = "Mi nombre"
-snippetProperties[nombre][options][] = ""
-snippetProperties[titulo][title] = "Título"
-snippetProperties[titulo][type] = "string"
-snippetProperties[titulo][default] = "Mi titulo"
-snippetProperties[titulo][options][] = ""
-snippetProperties[slogan][title] = "Slogan"
-snippetProperties[slogan][type] = "string"
-snippetProperties[slogan][default] = "Mi slogan"
-snippetProperties[slogan][options][] = ""
-snippetProperties[trabajo][title] = "Trabajo Previo"
-snippetProperties[trabajo][type] = "string"
-snippetProperties[trabajo][default] = "Trabajo previo"
-snippetProperties[trabajo][options][] = ""
-snippetProperties[estudios][title] = "Estudios"
-snippetProperties[estudios][type] = "string"
-snippetProperties[estudios][default] = "Educacion"
-snippetProperties[estudios][options][] = ""
-snippetProperties[foto][title] = "Foto"
-snippetProperties[foto][type] = "string"
-snippetProperties[foto][default] = "/themes/resume/assets/images/about-me/me.jpg"
-snippetProperties[foto][options][] = ""
-snippetProperties[fondo][title] = "Fondo"
-snippetProperties[fondo][type] = "string"
-snippetProperties[fondo][default] = "/themes/resume/assets/images/about-me/about-me-bg-1.jpg"
-snippetProperties[fondo][options][] = ""
-snippetProperties[logo][title] = "Logo"
-snippetProperties[logo][type] = "string"
-snippetProperties[logo][default] = "/themes/resume/assets/images/about-me/mouse.png"
-snippetProperties[logo][options][] = ""
-snippetProperties[facebook][title] = "Facebook"
-snippetProperties[facebook][type] = "string"
-snippetProperties[facebook][default] = "http://www.facebook.com/"
-snippetProperties[facebook][options][] = ""
-snippetProperties[twiter][title] = "Twiter"
-snippetProperties[twiter][type] = "string"
-snippetProperties[twiter][default] = "http://www.twitter.com/"
-snippetProperties[twiter][options][] = ""
-snippetProperties[youtube][title] = "Youtube"
-snippetProperties[youtube][type] = "string"
-snippetProperties[youtube][default] = "http://www.youtube.com/"
-snippetProperties[youtube][options][] = ""
-snippetProperties[cv][title] = "Curriculum"
-snippetProperties[cv][type] = "string"
-snippetProperties[cv][default] = "#"
-snippetProperties[cv][options][] = ""
-snippetProperties[nacimiento][title] = "Fecha Nacimiento"
-snippetProperties[nacimiento][type] = "string"
-snippetProperties[nacimiento][default] = "21-05-1980"
-snippetProperties[nacimiento][options][] = ""
+
+[builderDetails]
+modelClass = "LuisMayta\Resume\Models\Sitio"
+identifierValue = 1
+modelKeyColumn = "id"
+displayColumn = "titulo"
+notFoundMessage = "Record not found"
+
+[builderDetails DatosPersonales]
+modelClass = "LuisMayta\Resume\Models\DatosPersonales"
+identifierValue = 1
+modelKeyColumn = "id"
+displayColumn = "nombre_completo"
+notFoundMessage = "Record not found"
 ==
 <?php
 use Carbon\Carbon;
-
+use LuisMayta\Resume\Models\DatosPersonales;
 function onStart()
 {
-    $this['edad'] = Carbon::parse($this->nacimiento)->age;
+    $dp = DatosPersonales::first();
+    $this['edad'] = Carbon::parse($dp->fecha_nacimiento)->age;
 
 }
 ?>
 ==
-<section id="about-me" class="section section-no-border section-parallax custom-section-padding-1 custom-position-1 custom-xs-bg-size-cover parallax-no-overflow m-0" data-plugin-parallax data-plugin-options="{'speed': 1.5}" data-image-src="{{ fondo }}">
+{% set record = builderDetails.record %}
+{% set dp = DatosPersonales.record %}
+<section id="about-me" class="section section-no-border section-parallax custom-section-padding-1 custom-position-1 custom-xs-bg-size-cover parallax-no-overflow m-0" data-plugin-parallax data-plugin-options="{'speed': 1.5}" data-image-src="{{ record.fondo.path }}">
     <div class="container">
         <div class="row">
             <div class="col-lg-4 custom-sm-margin-bottom-1">
-                <img src="{{ foto }}" class="img-fluid custom-border custom-image-position-2 custom-box-shadow-4" alt />
+                <img src="{{ dp.foto.path }}" class="img-fluid custom-border custom-image-position-2 custom-box-shadow-4" alt />
             </div>
             <div class="col-lg-6 col-xl-5">
-                <h1 class="text-color-primary custom-font-size-1">{{ nombre }}</h1>
-                <p class="text-color-light font-weight-normal custom-font-size-2 custom-margin-bottom-1">{{ titulo }}</p>
+                <h1 class="text-color-primary custom-font-size-1">{{ dp.nombre_completo }}</h1>
+                <p class="text-color-light font-weight-normal custom-font-size-2 custom-margin-bottom-1">{{ dp.perfil }}</p>
                 <span class="custom-about-me-infos">
-                    <span class="custom-text-color-1 text-uppercase mb-3">{{ slogan }}</span>
+                    <span class="custom-text-color-1 text-uppercase mb-3">{{ dp.slogan }}</span>
                     <span class="custom-text-color-1 text-uppercase">
                         <strong class="text-color-light">Trabajo Previo: </strong>{{trabajo}}
                         <a data-hash href="#experience" class="btn btn-tertiary text-uppercase custom-btn-style-1 text-1 ml-2">Ver más</a>
@@ -88,27 +53,12 @@ function onStart()
                 </span>
             </div>
             <div class="col-lg-2 col-xl-3 d-none d-lg-block">
-                <img src="{{ logo }}" custom-anim class="img-fluid custom-image-pos-1" alt />
+                <img src="{{ record.logo.path }}" custom-anim class="img-fluid custom-image-pos-1" alt />
             </div>
         </div>
     </div>
-    <ul class="social-icons custom-social-icons">
-        <li class="social-icons-facebook">
-            <a href="{{facebook}}" target="_blank" title="Facebook">
-                <i class="fab fa-facebook-f"></i>
-            </a>
-        </li>
-        <li class="social-icons-twitter">
-            <a href="{{twiter}}" target="_blank" title="Twitter">
-                <i class="fab fa-twitter"></i>
-            </a>
-        </li>
-        <li class="social-icons-youtube">
-            <a href="{{youtube}}" target="_blank" title="Youtube">
-                <i class="fab fa-youtube"></i>
-            </a>
-        </li>
-    </ul>
+    {% partial 'redes-sociales'%}
+
 </section>
 
 <div class="custom-about-me-links bg-color-light">
@@ -158,7 +108,7 @@ function onStart()
                                 </li>
                                 <li>
                                     <span class="text-color-dark">Estado civil:</span>
-                                    <span class="custom-text-color-2">Soltero</span>
+                                    <span class="custom-text-color-2">{{ dp.estado_civil }}</span>
                                 </li>
                                 <li>
                                     <span class="text-color-dark">Nacionalidad:</span>
@@ -169,10 +119,6 @@ function onStart()
                         <div class="col-md-6">
                             <ul class="custom-list-style-1 p-0 mb-0">
                                 <li>
-                                    <span class="text-color-dark">Skype:</span>
-                                    <span class="custom-text-color-2"><a class="custom-text-color-2" href="skype:yourskype?chat">yourskype</a></span>
-                                </li>
-                                <li>
                                     <span class="text-color-dark">EMAIL:</span>
                                     <span class="custom-text-color-2"><a class="custom-text-color-2" href="luis.mayta@gmail.com">luis.mayta@gmail.com</a></span>
                                 </li>
@@ -182,13 +128,11 @@ function onStart()
                 </div>
 
                 <h2 class="text-color-quaternary font-weight-extra-bold text-uppercase">Sobre Mi</h2>
-
-                {% content 'resumen' %}
-
+                    {{ dp.descripcion_corta|raw }}
                 <div class="about-me-more" id="aboutMeMore">
-                    {% content 'detalle' %}
+                    {{ dp.descripcion|raw}}
                 </div>
-
+                <p></p>
                 <a id="aboutMeMoreBtn" class="btn btn-tertiary text-uppercase custom-btn-style-1 text-1" href="#">ver más</a>
 
             </div>
