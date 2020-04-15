@@ -1,41 +1,25 @@
 description = "Sobre mi"
 
 [viewBag]
-snippetCode = "misdatos"
-snippetName = "Mis datos"
-
-[builderDetails]
-modelClass = "LuisMayta\Resume\Models\Sitio"
-identifierValue = 1
-modelKeyColumn = "id"
-displayColumn = "titulo"
-notFoundMessage = "Record not found"
-
-[builderDetails DatosPersonales]
-modelClass = "LuisMayta\Resume\Models\DatosPersonales"
-identifierValue = 1
-modelKeyColumn = "id"
-displayColumn = "nombre_completo"
-notFoundMessage = "Record not found"
 ==
-<?php
-use Carbon\Carbon;
-use LuisMayta\Resume\Models\DatosPersonales;
-function onStart()
-{
-    $dp = DatosPersonales::first();
-    $this['edad'] = Carbon::parse($dp->fecha_nacimiento)->age;
 
-}
-?>
-==
-{% set record = builderDetails.record %}
-{% set dp = DatosPersonales.record %}
-<section id="about-me" class="section section-no-border section-parallax custom-section-padding-1 custom-position-1 custom-xs-bg-size-cover parallax-no-overflow m-0" data-plugin-parallax data-plugin-options="{'speed': 1.5}" data-image-src="{{ record.fondo.path }}">
+<section id="about-me" class="section section-no-border section-parallax custom-section-padding-1 custom-position-1 custom-xs-bg-size-cover parallax-no-overflow m-0" data-plugin-parallax data-plugin-options="{'speed': 1.5}"
+{% if sitio.fondo.path=='' %}
+    data-image-src="{{ 'assets/images/about-me/about-me-bg-1.jpg'|theme }}"
+{% else %}
+    data-image-src="{{ sitio.fondo.path }}"
+{% endif %}
+>
     <div class="container">
         <div class="row">
             <div class="col-lg-4 custom-sm-margin-bottom-1">
-                <img src="{{ dp.foto.path }}" class="img-fluid custom-border custom-image-position-2 custom-box-shadow-4" alt />
+                <img
+                {% if sitio.fondo.path=='' %}
+                    src="{{ 'assets/images/about-me/me.jpg'|theme }}"
+                {% else %}
+                    src="{{ dp.foto.path }}"
+                {% endif %}
+                class="img-fluid custom-border custom-image-position-2 custom-box-shadow-4" alt />
             </div>
             <div class="col-lg-6 col-xl-5">
                 <h1 class="text-color-primary custom-font-size-1">{{ dp.nombre_completo }}</h1>
@@ -53,7 +37,13 @@ function onStart()
                 </span>
             </div>
             <div class="col-lg-2 col-xl-3 d-none d-lg-block">
-                <img src="{{ record.logo.path }}" custom-anim class="img-fluid custom-image-pos-1" alt />
+                <img
+                {% if sitio.logo.path=='' %}
+                    src="{{ 'assets/images/about-me/mouse.png'|theme }}"
+                {% else %}
+                    src="{{ sitio.logo.path }}"
+                {% endif %}
+                custom-anim class="img-fluid custom-image-pos-1" alt />
             </div>
         </div>
     </div>
@@ -68,7 +58,7 @@ function onStart()
                 <a data-hash href="#say-hello" class="text-decoration-none">
                     <span class="custom-nav-button text-color-dark">
                         <i class="icon-earphones-alt icons text-color-primary"></i>
-                        Información de contacto	
+                        Información de contacto
                     </span>
                 </a>
             </div>
@@ -76,7 +66,7 @@ function onStart()
                 <a data-hash href="#say-hello" class="text-decoration-none">
                     <span class="custom-nav-button custom-divisors text-color-dark">
                         <i class="icon-envelope-open icons text-color-primary"></i>
-                        Enviar un mensaje	
+                        Enviar un mensaje
                     </span>
                 </a>
             </div>
@@ -84,7 +74,7 @@ function onStart()
                 <a href="{{cv}}" class="text-decoration-none">
                     <span class="custom-nav-button text-color-dark">
                         <i class="icon-cloud-download icons text-color-primary"></i>
-                        Descargar cv	
+                        Descargar cv
                     </span>
                 </a>
             </div>
@@ -104,7 +94,7 @@ function onStart()
                             <ul class="custom-list-style-1 p-0 mb-0">
                                 <li>
                                     <span class="text-color-dark">Edad:</span>
-                                    <span class="custom-text-color-2">{{ edad }}</span>
+                                    <span class="custom-text-color-2">{{ dp.edad }}</span>
                                 </li>
                                 <li>
                                     <span class="text-color-dark">Estado civil:</span>

@@ -1,20 +1,7 @@
 description = "experiencia"
 
 [viewBag]
-
-[builderList]
-modelClass = "LuisMayta\Resume\Models\Experiencia"
-scope = "-"
-scopeValue = "{{ :scope }}"
-displayColumn = "cargo"
-noRecordsMessage = "No records found"
-detailsPage = "-"
-detailsUrlParameter = "id"
-pageNumber = "{{ :page }}"
 ==
-{% set records = builderList.records %}
-
-
 
 <section id="experience" class="section section-secondary section-no-border m-0">
     <div class="container">
@@ -23,7 +10,7 @@ pageNumber = "{{ :page }}"
                 <h2 class="text-color-quaternary text-uppercase font-weight-extra-bold">Experiencia</h2>
                 <section class="timeline custom-timeline" id="timeline">
                     <div class="timeline-body">
-                        {% for item in records %}
+                        {% for item in experiencias %}
                         <article class="timeline-box right custom-box-shadow-2">
                             <div class="row">
                                 <div class="experience-info col-lg-3 col-sm-5 bg-color-primary">

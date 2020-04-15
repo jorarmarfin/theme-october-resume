@@ -10,17 +10,17 @@ default = 1
 
 		<!-- Basic -->
 		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">	
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-		<title>Luis Fernando Mayta Campos</title>	
+		<title>{{sitio.titulo}}</title>
 
 		<meta name="keywords" content="HTML5 Template" />
 		<meta name="description" content="Porto - Responsive HTML5 Template">
 		<meta name="author" content="okler.net">
 
 		<!-- Favicon -->
-		<link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
-		<link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+		<link rel="shortcut icon" href="{{'assets/images/about-me/favicon.ico'|theme}}" type="image/x-icon" />
+		<link rel="apple-touch-icon" href="{{'assets/images/about-me/apple-touch-icon.png'|theme}}">
 
 		<!-- Mobile Metas -->
 		<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0, shrink-to-fit=no">
@@ -49,12 +49,12 @@ default = 1
 		<link rel="stylesheet" href="{{ 'assets/vendor/rs-plugin/css/settings.css'|theme }}">
 		<link rel="stylesheet" href="{{ 'assets/vendor/rs-plugin/css/layers.css'|theme }}">
 		<link rel="stylesheet" href="{{ 'assets/vendor/rs-plugin/css/navigation.css'|theme }}">
-		
+
 		<!-- Demo CSS -->
 		<link rel="stylesheet" href="{{ 'assets/css/demos/demo-resume.css'|theme }}">
 
 		<!-- Skin CSS -->
-		<link rel="stylesheet" href="{{ 'assets/css/skins/skin-resume.css'|theme }}"> 
+		<link rel="stylesheet" href="{{ 'assets/css/skins/skin-resume.css'|theme }}">
 
 		<!-- Theme Custom CSS -->
 		<link rel="stylesheet" href="{{ 'assets/css/custom.css'|theme }}">
@@ -139,21 +139,8 @@ default = 1
 			</header>
 
 			<div role="main" class="main">
-			{% partial 'about-me'%}
 
-			{% partial 'experiencia'%}
 
-			{% partial 'educacion'%}
-
-			{% partial 'habilidades'%}
-
-			{% partial 'portafolio'%}
-
-			{% partial 'recomendaciones'%}
-
-			{% partial 'myblog'%}
-
-			{% partial 'contacto'%}
 			{% page %}
 
 			<footer id="footer" class="m-0 p-0">
@@ -186,10 +173,10 @@ default = 1
 		<script src="{{ 'assets/vendor/magnific-popup/jquery.magnific-popup.min.js'|theme }}"></script>
 		<script src="{{ 'assets/vendor/vide/jquery.vide.min.js'|theme }}"></script>
 		<script src="{{ 'assets/vendor/vivus/vivus.min.js'|theme }}"></script>
-		
+
 		<!-- Theme Base, Components and Settings -->
 		<script src="{{ 'assets/js/theme.js'|theme }}"></script>
-		
+
 		<!-- Current Page Vendor and Views -->
 		<script src="{{ 'assets/vendor/rs-plugin/js/jquery.themepunch.tools.min.js'|theme }}"></script>
 		<script src="{{ 'assets/vendor/rs-plugin/js/jquery.themepunch.revolution.min.js'|theme }}"></script>
@@ -199,10 +186,10 @@ default = 1
 
 		<!-- Demo -->
 		<script src="{{ 'assets/js/demos/demo-resume.js'|theme }}"></script>
-		
+
 		<!-- Theme Custom -->
 		<script src="{{ 'assets/js/custom.js'|theme }}"></script>
-		
+
 		<!-- Theme Initialization Files -->
 		<script src="{{ 'assets/js/theme.init.js'|theme }}"></script>
 
@@ -213,7 +200,7 @@ default = 1
 			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 			})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-		
+
 			ga('create', 'UA-12345678-1', 'auto');
 			ga('send', 'pageview');
 		</script>
