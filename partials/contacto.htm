@@ -1,12 +1,6 @@
 description = "Contacto"
 
 [viewBag]
-snippetCode = "contacto"
-snippetName = "contacto"
-snippetProperties[c3][title] = "nombre"
-snippetProperties[c3][type] = "string"
-snippetProperties[c3][default] = 5
-snippetProperties[c3][options][] = ""
 ==
 <div id="say-hello" class="container-fluid">
     <div class="row">
@@ -14,30 +8,25 @@ snippetProperties[c3][options][] = ""
             <section class="section section-no-border bg-color-primary h-100 m-0">
                 <div class="row justify-content-end m-0">
                     <div class="col-half-section col-half-section-right mr-3">
-                        
-                        <h2 class="text-color-quaternary text-uppercase font-weight-extra-bold">Say Hello {{ c3 }} </h2>
-                        <form id="contactForm" class="contact-form custom-form-style" action="php/contact-form.php" method="post">
-                            <div class="contact-form-success alert alert-success d-none mt-4" id="contactSuccess">
-                                <strong>Success!</strong> Your message has been sent to us.
-                            </div>
-                            <div class="contact-form-error alert alert-danger d-none mt-4" id="contactError">
-                                <strong>Error!</strong> There was an error sending your message.
-                                <span class="mail-error-message text-1 d-block" id="mailErrorMessage"></span>
-                            </div>
-                            
+
+                        <h2 class="text-color-quaternary text-uppercase font-weight-extra-bold">Contactame</h2>
+                        {# <form id="contactForm" class="contact-form custom-form-style" action="php/contact-form.php" method="post"> #}
+                        {{ form_ajax('onSend',{ class:'contact-form custom-form-style', flash: true }) }}
+
+
                             <div class="form-content">
                                 <div class="form-control-custom">
-                                    <input type="text" class="form-control" name="name" placeholder="Your Name *" data-msg-required="This field is required." id="name" required="" />
+                                    <input type="text" class="form-control" name="remitente" placeholder="Tu nombre *" data-msg-required="This field is required." id="remitente" required="" />
                                 </div>
                                 <div class="form-control-custom">
-                                    <input type="text" class="form-control" name="subject" placeholder="Subject *" data-msg-required="This field is required." id="subject" required="" />
+                                    <input type="text" class="form-control" name="asunto" placeholder="Asunto *" data-msg-required="This field is required." id="asunto" required="Este cambo es obligatorio" />
                                 </div>
                                 <div class="form-control-custom">
-                                    <textarea maxlength="5000" data-msg-required="Please enter your message." rows="10" class="form-control" name="message" placeholder="Message*" id="message" required="" aria-required="true"></textarea>
+                                    <textarea maxlength="5000" data-msg-required="Ingresa tu mensaje." rows="10" class="form-control" name="mensaje" placeholder="Mensaje*" id="mensaje" required="" aria-required="true"></textarea>
                                 </div>
-                                <input type="submit" class="btn btn-quaternary text-color-light text-uppercase font-weight-semibold outline-none custom-btn-style-2 custom-border-radius-1" value="Submit" />
+                                <input type="submit" class="btn btn-quaternary text-color-light text-uppercase font-weight-semibold outline-none custom-btn-style-2 custom-border-radius-1" value="Enviar" />
                             </div>
-                        </form>
+                        {{ form_close() }}
 
                     </div>
                 </div>

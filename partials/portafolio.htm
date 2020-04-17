@@ -2,28 +2,7 @@ description = "Portafolio"
 
 [viewBag]
 
-[builderList Categorias]
-modelClass = "LuisMayta\Resume\Models\Portafolio"
-scope = "scopeCategorias"
-scopeValue = "{{ :scope }}"
-displayColumn = "id"
-noRecordsMessage = "No records found"
-detailsPage = "-"
-detailsUrlParameter = "id"
-pageNumber = "{{ :page }}"
-
-[builderList Portafolio]
-modelClass = "LuisMayta\Resume\Models\Portafolio"
-scope = "-"
-scopeValue = "{{ :scope }}"
-displayColumn = "id"
-noRecordsMessage = "No records found"
-detailsPage = "-"
-detailsUrlParameter = "id"
-pageNumber = "{{ :page }}"
 ==
-{% set records = Categorias.records %}
-{% set trabajos = Portafolio.records %}
 
 <section id="portfolio" class="section section-no-border bg-color-secondary m-0">
     <div class="container">
@@ -32,20 +11,32 @@ pageNumber = "{{ :page }}"
                 <h2 class="text-color-quaternary font-weight-extra-bold text-uppercase">Portafolio</h2>
                 <ul class="nav nav-pills sort-source custom-nav-sort mb-4" data-sort-id="portfolio" data-option-key="filter">
                 <li class="nav-item active" data-option-value="*"><a class="nav-link text-dark active" href="#">Show All</a></li>
-                {% for record in records %}
-                    <li class="nav-item" data-option-value=".{{ record.categoria }}"><a class="nav-link text-dark" href="#">{{ record.categoria }}</a></li>
+                {% for item in categorias %}
+                    <li class="nav-item" data-option-value=".{{ item.categoria }}"><a class="nav-link text-dark" href="#">{{ item.categoria }}</a></li>
                 {% endfor %}
                 </ul>
                 <div class="sort-destination-loader sort-destination-loader-showing">
                     <div class="row image-gallery sort-destination lightbox" data-sort-id="portfolio" data-plugin-options="{'delegate': 'a.lightbox-portfolio', 'type': 'image', 'gallery': {'enabled': true}}">
-                    {% for item in trabajos %}
+                    {% for item in portafolio %}
                         <div class="col-12 col-sm-6 col-lg-3 isotope-item {{ item.categoria }}">
                             <div class="image-gallery-item mb-4 pb-3">
-                                <a href="{{ 'assets/images/portfolio/portfolio-1.jpg'|theme }}" class="lightbox-portfolio">
+                                <a
+                                {% if item.trabajo.path == '' %}
+                                    href="{{ 'assets/images/portfolio/portfolio-1.jpg'|theme }}"
+                                {% else %}
+                                    href="{{ item.trabajo.path }}"
+                                {% endif %}
+                                class="lightbox-portfolio">
                                     <span class="thumb-info custom-thumb-info-1">
                                         <span class="thumb-info-wrapper">
                                             <span class="thumb-info-plus"></span>
-                                            <img src="{{ 'assets/images/portfolio/portfolio-1.jpg'|theme }}" class="img-fluid" alt="">
+                                            <img
+                                            {% if item.trabajo.path == '' %}
+                                                src="{{ 'assets/images/portfolio/portfolio-1.jpg'|theme }}"
+                                            {% else %}
+                                                src="{{ item.trabajo.path }}"
+                                            {% endif %}
+                                            class="img-fluid" alt="">
                                         </span>
                                     </span>
                                 </a>

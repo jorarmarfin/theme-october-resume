@@ -11,7 +11,7 @@ Theme Version:	7.2.0
 	/*
 	Custom Rules
 	*/
-	
+
 	// No White Space
 	$.validator.addMethod("noSpace", function(value, element) {
     	if( $(element).attr('required') ) {
@@ -60,65 +60,65 @@ Theme Version:	7.2.0
 				}
 
 				// Ajax Submit
-				$.ajax({
-					type: 'POST',
-					url: $form.attr('action'),
-					data: data
-				}).always(function(data, textStatus, jqXHR) {
+				// $.ajax({
+				// 	type: 'POST',
+				// 	url: 'http://myoctober.test/',
+				// 	data: data
+				// }).always(function(data, textStatus, jqXHR) {
 
-					$errorMessage.empty().hide();
+				// 	$errorMessage.empty().hide();
 
-					if (data.response == 'success') {
+				// 	if (data.response == 'success') {
 
-						// Uncomment the code below to redirect for a thank you page
-						// self.location = 'thank-you.html';
+				// 		// Uncomment the code below to redirect for a thank you page
+				// 		// self.location = 'thank-you.html';
 
-						$messageSuccess.removeClass('d-none');
-						$messageError.addClass('d-none');
+				// 		$messageSuccess.removeClass('d-none');
+				// 		$messageError.addClass('d-none');
 
-						// Reset Form
-						$form.find('.form-control')
-							.val('')
-							.blur()
-							.parent()
-							.removeClass('has-success')
-							.removeClass('has-danger')
-							.find('label.error')
-							.remove();
+				// 		// Reset Form
+				// 		$form.find('.form-control')
+				// 			.val('')
+				// 			.blur()
+				// 			.parent()
+				// 			.removeClass('has-success')
+				// 			.removeClass('has-danger')
+				// 			.find('label.error')
+				// 			.remove();
 
-						if (($messageSuccess.offset().top - 80) < $(window).scrollTop()) {
-							$('html, body').animate({
-								scrollTop: $messageSuccess.offset().top - 80
-							}, 300);
-						}
+				// 		if (($messageSuccess.offset().top - 80) < $(window).scrollTop()) {
+				// 			$('html, body').animate({
+				// 				scrollTop: $messageSuccess.offset().top - 80
+				// 			}, 300);
+				// 		}
 
-						$form.find('.form-control').removeClass('error');
+				// 		$form.find('.form-control').removeClass('error');
 
-						$submitButton.val( submitButtonText ).attr('disabled', false);
-						
-						return;
+				// 		$submitButton.val( submitButtonText ).attr('disabled', false);
 
-					} else if (data.response == 'error' && typeof data.errorMessage !== 'undefined') {
-						$errorMessage.html(data.errorMessage).show();
-					} else {
-						$errorMessage.html(data.responseText).show();
-					}
+				// 		return;
 
-					$messageError.removeClass('d-none');
-					$messageSuccess.addClass('d-none');
+				// 	} else if (data.response == 'error' && typeof data.errorMessage !== 'undefined') {
+				// 		$errorMessage.html(data.errorMessage).show();
+				// 	} else {
+				// 		$errorMessage.html(data.responseText).show();
+				// 	}
 
-					if (($messageError.offset().top - 80) < $(window).scrollTop()) {
-						$('html, body').animate({
-							scrollTop: $messageError.offset().top - 80
-						}, 300);
-					}
+				// 	$messageError.removeClass('d-none');
+				// 	$messageSuccess.addClass('d-none');
 
-					$form.find('.has-success')
-						.removeClass('has-success');
-						
-					$submitButton.val( submitButtonText ).attr('disabled', false);
+				// 	if (($messageError.offset().top - 80) < $(window).scrollTop()) {
+				// 		$('html, body').animate({
+				// 			scrollTop: $messageError.offset().top - 80
+				// 		}, 300);
+				// 	}
 
-				});
+				// 	$form.find('.has-success')
+				// 		.removeClass('has-success');
+
+				// 	$submitButton.val( submitButtonText ).attr('disabled', false);
+
+				// });
 			}
 		});
 	});

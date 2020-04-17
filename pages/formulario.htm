@@ -1,0 +1,30 @@
+title = "formulario"
+url = "/formulario"
+is_hidden = 0
+
+[Midata]
+==
+{{ form_open({ request: 'onSend',class:'contact-form custom-form-style' }) }}
+                            {% flash success %}
+                            <div class="contact-form-success alert alert-success d-none mt-4" id="contactSuccess">
+                                <strong>Success!</strong> {{message}}
+                            </div>
+                            {% endflash %}
+                            {# <div class="contact-form-error alert alert-danger d-none mt-4" id="contactError">
+                                <strong>Error!</strong> There was an error sending your message.
+                                <span class="mail-error-message text-1 d-block" id="mailErrorMessage"></span>
+                            </div> #}
+
+                            <div class="form-content">
+                                <div class="form-control-custom">
+                                    <input type="text" class="form-control" name="remitente" placeholder="Tu nombre *" data-msg-required="This field is required." id="remitente" required="" />
+                                </div>
+                                <div class="form-control-custom">
+                                    <input type="text" class="form-control" name="asunto" placeholder="Asunto *" data-msg-required="This field is required." id="asunto" required="" />
+                                </div>
+                                <div class="form-control-custom">
+                                    <textarea maxlength="5000" data-msg-required="Ingresa tu mensaje." rows="10" class="form-control" name="mensaje" placeholder="Mensaje*" id="mensaje" required="" aria-required="true"></textarea>
+                                </div>
+                                <input type="submit" class="btn btn-quaternary text-color-light text-uppercase font-weight-semibold outline-none custom-btn-style-2 custom-border-radius-1" value="Submit" />
+                            </div>
+                        {{ form_close() }}
